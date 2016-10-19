@@ -16,7 +16,8 @@ exports.access_modified = {
 	grace_period_extension: log
 };
 
-exports.access_modified = {
+exports.access_revoked = {
+	access_revoked: log,
 	subscription_auto_renewed_failure: log,
 	subscription_canceled: log,
 	subscription_expired: log,
