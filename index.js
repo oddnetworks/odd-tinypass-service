@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
 	try {
 		const data = req.query.data;
 		const payload = JSON.parse(tinypass.decrypt(data));

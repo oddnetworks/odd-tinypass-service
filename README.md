@@ -1,6 +1,6 @@
 # Tinypass Webhook Service
 
-Standalone server for accepting POSTs from [Tinypass Webhooks](http://vx.piano.io/webhook-events-version-2).
+Standalone server for accepting GETs from [Tinypass Webhooks](http://vx.piano.io/webhook-events-version-2).
 
 Right now this just decrypts the event and logs it from a single Tinypass account.
 
@@ -9,7 +9,7 @@ Right now this just decrypts the event and logs it from a single Tinypass accoun
 Tinypass lets you specify a single URL it will sent all events to.
 
 ```
-POST / HTTP1.1
+GET / HTTP1.1
 HOST yourserver.com
 data=3AZvo7WmZ_Rm6CRFeEHv8rB5agHCqVCJwM0MVTAtM_WBl4YuwURzTr1H3vVqwW_GWywgYMOB3SmC791RXIp4Ty2lQPkYcwvov3Xu8oUU4LjlOg7Rr0YI5tNAF2O9iP5yAl034yUXRGWbLG4vDGlmRJfQLYlMYepGk0ckAwo7CPGvCXjwgyxGpsxgevi2NR89Se-oweJzvAxOGVdQRyqkXCSvg5eUA80KbPEw7X3EhwDwoWC68X_WmECCkEg8F6ecfFnWue0Nj-SGdvNllcENWg~~~V_JbW12a6A5s-wCRrDaTPUGNETqvqxbKUWMOhyAidRk
 ```
