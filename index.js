@@ -13,7 +13,20 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
 	try {
 		const data = req.query.data;
-		const payload = JSON.parse(tinypass.decrypt(data));
+
+		// Decrypt the data into a payload String object
+		let payload = tinypass.decrypt(data);
+
+		// Turn the string into a Buffer object
+		payload = Buffer.from(payload);
+
+		// Filter the Buffer elements to standard ASCII so we can use JSON.parse
+		payload = payload.filter(char => {
+			return char > 31;
+		});
+
+		// Finally parse the String into JSON
+		payload = JSON.parse(payload);
 
 		if (eventHandlers[payload.type] && eventHandlers[payload.type][payload.event] && typeof eventHandlers[payload.type][payload.event] === 'function') {
 			eventHandlers[payload.type][payload.event].call(undefined, payload);
@@ -23,6 +36,7 @@ app.get('/', (req, res) => {
 
 		res.send({message: 'ok'});
 	} catch (err) {
+		console.error(err.stack);
 		res.status(500).send({message: err.message});
 	}
 })
